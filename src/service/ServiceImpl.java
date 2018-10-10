@@ -1,11 +1,13 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
 import dao.Dao;
 import dao.DaoImpl;
+import entity.Dictionary;
 import entity.User;
 import util.Util;
 
@@ -32,5 +34,10 @@ public class ServiceImpl implements Service {
 			res = "2";
 		}
 		return res;
+	}
+
+	@Override
+	public List<Dictionary> getDic() {
+		return dao.getDic();
 	}
 }

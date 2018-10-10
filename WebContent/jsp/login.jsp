@@ -5,14 +5,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>登陆</title>
-	<script type="text/javascript" src="jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="bootstrap/bootstrap-datetimepicker.min.js"></script>
-	<script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="select2/select2.min.js"></script>
+	<script type="text/javascript" src="../framework/jquery/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../framework/select2/select2.min.js"></script>
 	
-	<link rel="stylesheet" href="bootstrap/bootstrap-datetimepicker.min.css" type="text/css" />
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="select2/select2.min.css" type="text/css" />
+	<link rel="stylesheet" href="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" />
+	<link rel="stylesheet" href="../framework/bootstrap-3.3.7/dist/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="../framework/select2/select2.min.css" type="text/css" />
 	
 	<style type="text/css">
 		div {
@@ -32,7 +32,7 @@
 	
 </head>
 <body>
-	<form action="login_main.do">
+	<form action="login_main.do" method="post">
 		<div class="form-group form-inline">
 			<label class="control-label">用户名：</label>
 			<input class="form-control" name="userName"/>
@@ -43,9 +43,9 @@
 		</div>
 		<div style="text-align:center;padding-top:10px">
 			<input type="submit" class="btn btn-primary" value="提交 ">
-			<a class="btn btn-default" href="regist.jsp">注册</a>
-			<a class="btn btn-default" href="menu.jsp">菜单</a>
-			<a class="btn btn-default" href="main_page_test.jsp">测试页 </a>
+			<a class="btn btn-default" href="./regist.jsp">注册</a>
+			<a class="btn btn-default" href="./menu.jsp">菜单</a>
+			<a class="btn btn-default" href="../test/main_page_test.jsp">测试页 </a>
 		</div>
 	</form>
 </body>

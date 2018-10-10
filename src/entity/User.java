@@ -1,15 +1,15 @@
 package entity;
 
 public class User {
-	/* 用户名 */
+	/** 用户名 */
 	private String userName;
-	/* 密码 */
+	/** 密码 */
 	private String pwd;
-	/* 电话*/
+	/** 电话*/
 	private String phone;
-	/* 性别 */
+	/** 性别 */
 	private char sex;
-	/* 用户级别 */
+	/** 用户级别 */
 	private char level;
 	
 	public String getUserName() {
