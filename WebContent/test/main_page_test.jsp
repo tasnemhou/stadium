@@ -3,13 +3,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script type="text/javascript" src="jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
-	
-	<link rel="stylesheet" href="bootstrap/bootstrap-datetimepicker.min.css" type="text/css" />
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="bootstrap/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="font/font-awesome.min.css" type="text/css" />
+	<script type="text/javascript" src="../framework/jquery/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../framework/select2/select2.min.js"></script>
+		
+	<link rel="stylesheet" href="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" />
+	<link rel="stylesheet" href="../framework/bootstrap-3.3.7/dist/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="../framework/select2/select2.min.css" type="text/css" />
 
 <script>
 

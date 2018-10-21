@@ -9,10 +9,15 @@
 	<script type="text/javascript" src="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../framework/select2/select2.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-table/dist/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
 		
 	<link rel="stylesheet" href="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" />
 	<link rel="stylesheet" href="../framework/bootstrap-3.3.7/dist/css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" href="../framework/select2/select2.min.css" type="text/css" />
+	<link rel="stylesheet" href="../framework/bootstrap-table/dist/bootstrap-table.min.css">
+	<link rel="stylesheet" href="../framework/bootstrap-table/dist/bootstrap-table.css">
+	
 	
 	<script type="text/javascript">
 		var customerType = "";

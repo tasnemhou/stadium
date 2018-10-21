@@ -8,16 +8,51 @@
 	<script type="text/javascript" src="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../framework/select2/select2.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-table/dist/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
 	
 	<link rel="stylesheet" href="../framework/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" />
 	<link rel="stylesheet" href="../framework/bootstrap-3.3.7/dist/css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" href="../framework/select2/select2.min.css" type="text/css" />
+	<link rel="stylesheet" href="../framework/bootstrap-table/dist/bootstrap-table.min.css">
+	<link rel="stylesheet" href="../framework/bootstrap-table/dist/bootstrap-table.css">
 	
 	<style type="text/css">
 		.background {
 			background:white;
 		}
 	</style>
+	
+	<script type="text/javascript">
+		function getDealDt() {
+			 $('#dealDetail_table').bootstrapTable({
+				 /* columns: [{
+			        field: 'customer',
+			        title: '使用人'
+			    }],*/
+			    data: [{
+			    	customer: '中国人',
+			    	dealDt: '2018-10-11',
+			    	dealAmount: '100',
+			    	dealTimes:'/',
+			    	kind:'优惠券',
+			    	dealType:'充值'
+			    }, {
+			    	customer: '我',
+			    	dealDt: '2018-10-12',
+			    	dealAmount: '/',
+			    	dealTimes:'1',
+			    	kind:'会员卡',
+			    	dealType:'消费'
+			    }]  
+			}) 
+			 $('#dealDetail').modal();
+		}
+		//取消弹框页面
+		function cancle_btn() {
+			$('#dealDetail').modal("hide");
+		}
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -27,7 +62,7 @@
 					<a class="collapsed" role="button" data-toggle="collapse" href="#collapseOne" >
 						<span class="glyphicon glyphicon-list"></span>基础信息
 					</a>
-					<button type="button" class="btn btn-success" style="float:right">交易明细 </button>
+					<button id="getDealDt" type="button" class="btn btn-success" style="float:right" onclick="getDealDt()">交易明细 </button>
 				</div>
 			</div>
 			<div id="collapseOne" class="panel-collapse collapse in">
@@ -128,6 +163,33 @@
 					</form>
 				</div>
 			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="dealDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			 <div class="modal-content">
+			 	<div class="modal-header">
+			 		<h4 class="modal-title" id="myModalLabel">客户交易明细</h4>
+			 	</div>
+			 	<div class="modal-body">
+					<table id="dealDetail_table" class="table table-hover">
+						<thead>
+							<tr>
+								<th data-field="customer" data-align="center">使用人</th>
+								<th data-field="dealDt" data-align="center">交易日期</th>
+								<th data-field="dealAmount" data-align="center">交易金额</th>
+								<th data-field="dealTimes" data-align="center">交易次数</th>
+								<th data-field="kind" data-align="center">交易类型</th>
+								<th data-field="dealType" data-align="center">交易方式</th>
+							</tr>
+						</thead>
+					</table>
+					<div style="text-align:right;padding-top:10px">
+						<button type="button" class="btn btn-primary" onclick="cancle_btn()">确定</button>
+					</div>
+				</div>
+			 </div>
 		</div>
 	</div>
 	
