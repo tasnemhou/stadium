@@ -50,7 +50,7 @@ create sequence emp_seq start with 1000000000 ;
    comment on column emp_pay_info.customer 			is '本次交易的使用人';
    comment on column emp_pay_info.dealAmount 		is '交易金额(使用金额或充值金额)';
    comment on column emp_pay_info.dealTimes 		is '交易次数(使用次数或充值次数)';
-   comment on column emp_pay_info.kind 				is '交易类型 0-充值 1-消费 2-免费（优惠）';
+   comment on column emp_pay_info.kind 				is '交易类型 0-充值 1-消费 ';
    comment on column emp_pay_info.customerType 		is '客户类型  0-年卡会员 1-月卡会员 2-次卡会员 3-散客';
    comment on column emp_pay_info.dealType 			is '交易方式 0-现金 1-会员卡 2-免费（优惠）';
    comment on column emp_pay_info.dealDt			is '交易日期';

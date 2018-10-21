@@ -14,6 +14,8 @@ import org.apache.log4j.Logger;
 import common.Alert;
 import entity.Dictionary;
 import entity.User;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import service.Service;
 import service.ServiceImpl;
 
@@ -28,11 +30,10 @@ public class MainServlet extends HttpServlet {
 		pw.println("<h1>2018/8/6</h1>");
 		pw.close(); */
 		
-		
 //		req.getRequestDispatcher("/test1.jsp").forward(req, res);
 		
 		String path = req.getServletPath();
-		log.info("psth is: "+path);
+		log.info("path is: "+path);
 		Service service = new ServiceImpl();
 		
 		User user = new User();
@@ -79,7 +80,18 @@ public class MainServlet extends HttpServlet {
 			String s = Alert.SAVESUC;
 			
 		}else if("/jsp/cus_login.do".equals(path)) {
-			req.getRequestDispatcher("main_page.jsp").forward(req, res);
+			//获取前台数据
+			String phone = req.getParameter("phone");		
+			//返回前台数据
+			JSONObject object = JSONObject.fromObject("{'phone':'12100000000'}");
+			req.setAttribute("phone","12100000000");
+			
+			PrintWriter pw = res.getWriter();
+			pw.println(object);
+			pw.close();
+			
+//			req.getRequestDispatcher("/jsp/main_page.jsp").forward(req, res);
+			System.out.println("fff");
 		}
 		log.info("END: ");
 	}

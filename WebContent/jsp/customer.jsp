@@ -21,23 +21,44 @@
     		width:300px;
     	}
  	</style>
+ 	<script type="text/javascript">
+ 		function submit_btn() {
+ 			var phone = $("#phone").val();
+ 			var pwd = $("#pwd").val();
+ 			alert(phone);
+ 			$.ajax({
+ 				url:"cus_login.do",
+ 				type:"post",
+ 				data:{"phone":phone,"pwd":pwd},
+ 				dataType:"json",
+ 				success:function(data){
+ 					alert(data.phone);
+ 					window.location.href="../jsp/main_page.jsp";
+ 				},
+ 				error:function(){
+ 					alert("error!!!")
+ 				}
+ 			})
+ 		}
+ 	</script>
 </head>
 <body>
 	<form action="cus_login.do">
 		<div style="text-align:center">
 			<div class="form-group form-inline">
 				<label class="control-label">手机号:</label>
-				<input class="form-control" type="text" >
+				<input id="phone" class="form-control" type="text" >
 			</div>
 			<div class="form-group form-inline">
 				<label class="control-label">密&nbsp;&nbsp;码：</label>
-				<input class="form-control" type="password">
+				<input id="pwd" class="form-control" type="password">
 			</div>
 		</div>
 		<div style="text-align:center;padding-top:10px">
-			<input type="submit" class="btn btn-primary" value="提交">
+<!-- 			<input type="submit" class="btn btn-primary"  value="提交"> -->
+			<input type="button" class="btn btn-primary" onclick="submit_btn()" value="提交">
 			<input type="button" class="btn btn-default" value="返回">
-			<a href="./regist_customer.jsp" class="btn btn-default">客户注册</a>		
+			<a href="./regist_customer.jsp" class="btn btn-default">客户注册</a>
 		</div>
 	</form>
 </body>
