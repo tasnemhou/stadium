@@ -1,6 +1,5 @@
 package service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -40,4 +39,5 @@ public class ServiceImpl implements Service {
 	public List<Dictionary> getDic() {
 		return dao.getDic();
 	}
+	
 }
