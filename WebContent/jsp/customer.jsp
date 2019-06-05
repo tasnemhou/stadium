@@ -25,18 +25,20 @@
  		function submit_btn() {
  			var phone = $("#phone").val();
  			var pwd = $("#pwd").val();
- 			alert(phone);
  			$.ajax({
  				url:"cus_login.do",
  				type:"post",
  				data:{"phone":phone,"pwd":pwd},
  				dataType:"json",
  				success:function(data){
- 					alert(data.phone);
- 					window.location.href="../jsp/main_page.jsp";
+					if(data.isExist=="0") {
+	 					window.location.href="../jsp/main_page.jsp";	
+					}else if(data.isExist=="1") {
+						alert("该客户不存在！");
+					}
  				},
  				error:function(){
- 					alert("error!!!")
+ 					window.location.href="../jsp/error.jsp";
  				}
  			})
  		}
@@ -57,7 +59,7 @@
 		<div style="text-align:center;padding-top:10px">
 <!-- 			<input type="submit" class="btn btn-primary"  value="提交"> -->
 			<input type="button" class="btn btn-primary" onclick="submit_btn()" value="提交">
-			<input type="button" class="btn btn-default" value="返回">
+<!-- 			<input type="button" class="btn btn-default" value="返回"> -->
 			<a href="./regist_customer.jsp" class="btn btn-default">客户注册</a>
 		</div>
 	</form>

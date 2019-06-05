@@ -5,14 +5,11 @@ import java.util.List;
 import entity.Dictionary;
 import entity.User;
 
-public interface Service {
+public interface LoginService {
 
-	//用户注册
-	public void regist(User user);
-		
 	//用户登陆
 	public String checkUser(User user);
 	
-	//获取数据字典
-	public List<Dictionary> getDic();
+	//客户登陆验证
+	public String chkCustomer(String phone);
 }

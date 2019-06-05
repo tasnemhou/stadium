@@ -1,6 +1,10 @@
 package entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
+	
+	private static final long serialVersionUID = -7622169463482654944L;
 	/** 用户名 */
 	private String userName;
 	/** 密码 */

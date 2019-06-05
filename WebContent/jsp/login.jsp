@@ -28,6 +28,26 @@
 		 function regist() {
 			 
 		 }
+		 function subBtn() {
+			 var userNm = $("#userNm").val();
+ 			 var pwd = $("#pwd").val();
+ 			 $.ajax({
+	 				url:"login_main.do",
+	 				type:"post",
+	 				data:{"userName":userNm,"pwd":pwd},
+	 				dataType:"json",
+	 				success:function(data){
+						if(data.user=="0") {
+		 					window.location.href="../jsp/customer.jsp";							
+						}else if(data.user=="1") {
+							alert("输入错误，请重新输入！");
+						}
+	 				},
+	 				error:function(){
+	 					alert("error!!!")
+	 				}
+ 			})
+		 }
 	</script>
 	
 </head>
@@ -35,14 +55,14 @@
 	<form action="login_main.do" method="post">
 		<div class="form-group form-inline">
 			<label class="control-label">用户名：</label>
-			<input class="form-control" name="userName"/>
+			<input id="userNm" class="form-control" name="userName"/>
 		</div>
 		<div class="form-group form-inline">
 			<label class=" control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-			<input class="form-control" type="password" name="pwd">
+			<input id="pwd" class="form-control" type="password" name="pwd">
 		</div>
 		<div style="text-align:center;padding-top:10px">
-			<input type="submit" class="btn btn-primary" value="提交 ">
+			<a class="btn btn-primary" onclick="subBtn();">提交</a>
 			<a class="btn btn-default" href="./regist.jsp">注册</a>
 			<a class="btn btn-default" href="./menu.jsp">菜单</a>
 			<a class="btn btn-default" href="../test/main_page_test.jsp">测试页 </a>

@@ -20,7 +20,7 @@
 	
 	
 	<script type="text/javascript">
-		var customerType = "";
+		 var customerType = "";
 	 	var customerType_html = "<option></option>";
 		$(function() {
 			//初始化日期组件
@@ -78,6 +78,36 @@
 		            	
 		            }
 		        })
+			} 
+		
+		function submitBtn() {
+			var param = {"name":$("#name").val(),
+						 "sex":$("input[name='sex']:checked").val(),
+						 "phone": $("#phone").val(),
+						 "registDt":$("#registDt").val(),
+			 			 "customerType":$("#customerType").val(),
+			 			 "pwd":$("#pwd").val(),
+			 			 "amount":$("#amount").val(),
+			 			 "dealTimes":$("#dealTimes").val()
+						};
+			$.ajax({
+				url:"cus_reg.re",
+ 				type:"post",
+ 				data:param,
+ 				dataType:"json",
+ 				success:function(data){
+ 					alert(data.isDone);
+					if(data.isDone=="0") {
+						alert("注册完成！");;	
+					}else if(data.isDone=="1") {
+						alert("注册失败！");
+					}
+ 				},
+ 				error:function(){
+ 					alert("wwwwwwwwwww");
+ 					window.location.href="../jsp/error.jsp";
+ 				}
+			}) 
 		}
 	</script>
 </head>
@@ -96,7 +126,7 @@
 						<div class="col-md-6 form-group">
 							<div class="col-md-3 title">姓名:</div>
 							<div class="col-md-9">
-								<input class="form-control" type="text" >
+								<input id="name" class="form-control" type="text" >
 							</div>
 						</div>
 					    <div class="col-md-6 form-group">
@@ -110,14 +140,14 @@
 					    <div class="col-md-6 form-group">
 							<div class="col-md-3 title">电话：</div>
 							<div class="col-md-9">
-								<input class="form-control" type="text" maxlength="11">
+								<input id="phone" class="form-control" type="text" maxlength="11">
 							</div>
 						</div>
 					    <div class="col-md-6 form-group">
 							<div class="col-md-3 title">注册日期：</div>
 							<div class="col-md-9">
-								<div id="registDt" class="input-group date form-date">
-									 <input class="form-control" type="text" /><span class="input-group-addon"><span class=" glyphicon glyphicon-calendar" ></span></span>
+								<div class="input-group date form-date">
+									 <input id="registDt" class="form-control" type="text" /><span class="input-group-addon"><span class=" glyphicon glyphicon-calendar" ></span></span>
 								</div>
 							</div>
 						</div>
@@ -125,18 +155,18 @@
 						<div class="col-md-6 form-group">
 							<div class="col-md-3 title">会员类型：</div>
 							<div class="col-md-9">
-								<select class="form-control customerType">
+								<select id="customerType" class="form-control customerType">
 									<option></option>
-									<option>年卡</option>
-									<option>月卡</option>
-									<option>次卡</option>
+									<option value="0">年卡</option>
+									<option value="1">月卡</option>
+									<option value="2">次卡</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-6 form-group">
 							<div class="col-md-3 title">密码：</div>
 							<div class="col-md-9">
-								<input class="form-control" type="password">
+								<input id="pwd" class="form-control" type="password">
 							</div>
 						</div>
 					</form>
@@ -156,10 +186,10 @@
 	 				<div class="col-md-6 form-group">
 						<div class="col-md-3 title">充值金额：</div>
 						<div class="col-md-9">
-							<input class="form-control" type="text">
+							<input id="amount" class="form-control" type="text">
 						</div>
 					</div>
-	 				<div class="col-md-6 form-group">
+	 				<!-- <div class="col-md-6 form-group">
 						<div class="col-md-3 title">截止日期：</div>
 						<div class="col-md-9 ">
 							<div id="endDt" class="col-md-12 input-group date form-date">
@@ -169,7 +199,7 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div> -->
 	 				<div class="col-md-6 form-group">
 						<div class="col-md-3 title">充值次数：</div>
 						<div class="col-md-9">
@@ -185,7 +215,8 @@
 		<!-- 基础信息结束 -->
 		
 		<div style="text-align:center;padding-top:10px">
-			<input type="submit" class="btn btn-primary" value="提交">
+			<input class="btn btn-primary" onclick="submitBtn();" value="提交" />			
+<!-- 			<a href="./customer.jsp" class="btn btn-default">返回</a>	 -->
 			<a href="./customer.jsp" class="btn btn-default">返回</a>	
 		</div>
 	</div>

@@ -1,6 +1,10 @@
 package entity;
 
-public class Dictionary {
+import java.io.Serializable;
+
+public class Dictionary implements Serializable {
+	
+	private static final long serialVersionUID = 3736672340163502884L;
 	/** 数值值 */
 	private String id;
 	/** 数值名称 */

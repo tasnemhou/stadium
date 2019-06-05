@@ -5,13 +5,12 @@ import entity.User;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface Dao {
+public interface LoginDao {
 
-	//登陆
+	//员工登陆
 	public String checkUser(String pwd);
-	//注册
-	public void regist(User user);
-	//获取数据字典
-	public List<Dictionary> getDic();
+	
+	//客户登陆验证
+	public String chkCustomer(String phone);
 	
 }
