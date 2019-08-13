@@ -1,2 +1,4 @@
 ---------------------表名重命名----------------------------------------
-rename emp_pay_info to emp_deal_info    --2019.06.05
+RENAME emp_customer_info TO sts_customer_info;
+RENAME emp_deal_info TO sts_deal_info;
+RENAME emp_user_info TO sts_user_info

@@ -67,7 +67,7 @@ create sequence emp_seq start with 1000000000 ;
    comment on column dictionary.flag 	is '数据标识种类';
    
  --菜单表
- create table emp_menu (
+ create table sts_menu (
   node_id varchar2(10) primary key,
   node_name varchar2(10),
   node_showName varchar2(10),
@@ -86,3 +86,15 @@ comment on column emp_menu.node_url is '菜单节点对应的跳转URL';
 comment on column emp_menu.node_isNewBlank is '是否在新窗口打开，内/外站点打开的方式不同';
 comment on column emp_menu.node_creatTime is '菜单记录的创建时间';
 
+--20190808  update
+ALTER TABLE STS_DEAL_INFO 	  ADD (ISPAY CHAR(1));
+ALTER TABLE STS_CUSTOMER_INFO ADD (BEGDATE VARCHAR2(8));
+ALTER TABLE STS_CUSTOMER_INFO ADD (ENDDATE VARCHAR2(8));
+ALTER TABLE STS_CUSTOMER_INFO ADD (LASTTIMES VARCHAR2(6));
+
+COMMENT ON COLUMN STS_DEAL_INFO.ISPAY 		      IS '1-会员充值  2-会员消费  3-散客消费';
+COMMENT ON COLUMN STS_CUSTOMER_INFO.BEGDATE 	  IS '年/月 卡用户 起始日期';
+COMMENT ON COLUMN STS_CUSTOMER_INFO.ENDDATE 	  IS '年/月 卡用户 截止日期';
+COMMENT ON COLUMN STS_CUSTOMER_INFO.LASTTIMES 	  IS '剩余次数';
+
+ALTER TABLE STS_DEAL_INFO DROP COLUMN TIMES;

@@ -20,7 +20,7 @@
 	
 	
 	<script type="text/javascript">
-		 var customerType = "";
+		var customerType = "";
 	 	var customerType_html = "<option></option>";
 		$(function() {
 			//初始化日期组件
@@ -36,7 +36,7 @@
 		//初始化日期组件
 		function init_date() {
 			  //注册日期
-			  $("#registDt").datetimepicker({
+			  $("#begDt").datetimepicker({
 			        format: "yyyy-mm-dd",
 			        autoclose: true,
 			        todayBtn: true,
@@ -86,7 +86,7 @@
 						 "phone": $("#phone").val(),
 						 "registDt":$("#registDt").val(),
 			 			 "customerType":$("#customerType").val(),
-			 			 "pwd":$("#pwd").val(),
+// 			 			 "pwd":$("#pwd").val(),
 			 			 "amount":$("#amount").val(),
 			 			 "dealTimes":$("#dealTimes").val()
 						};
@@ -104,10 +104,38 @@
 					}
  				},
  				error:function(){
- 					alert("wwwwwwwwwww");
  					window.location.href="../jsp/error.jsp";
  				}
 			}) 
+		}
+		//检查此电话号码是否已被注册
+		function getPhoneNo() {
+			$.ajax({
+				url:"getPhone.info",
+				type:"post",
+				data:{"phone":$("#phone").val()},
+				dataType:"json",
+				success:function(data) {
+					if(data.isRight>0) {
+						alert("此号码已经存在，请重新输入！");
+					}
+				},
+				error:function() {
+					alert("电话号码检查失败！");
+					/* window.location.href = "../jsp/error.jsp"; */
+				}
+			})
+		}
+		
+		function getCustomerType() {
+			var cusType = $("#customerType").val();
+			if(cusType=="0"||cusType=="1") {
+				$(".beDate").hide();
+				$(".times").show();
+			}else if(cusType=="2") {
+				$(".beDate").show();
+				$(".times").hide();
+			}
 		}
 	</script>
 </head>
@@ -129,46 +157,34 @@
 								<input id="name" class="form-control" type="text" >
 							</div>
 						</div>
-					    <div class="col-md-6 form-group">
+					    <!-- <div class="col-md-6 form-group">
 							<div class="col-md-3 title">性别：</div>
 							<div class="col-md-9">
 								<input type="radio" name="sex" value="0"> 男
 								<input type="radio" name="sex" value="1"> 女
 							</div>
-						</div>
-						<div style="clear:both;"></div>
+						</div> 
+						<div style="clear:both;"></div>-->
 					    <div class="col-md-6 form-group">
 							<div class="col-md-3 title">电话：</div>
 							<div class="col-md-9">
-								<input id="phone" class="form-control" type="text" maxlength="11">
+								<input id="phone" class="form-control" type="text" maxlength="11" onblur="getPhoneNo()">
 							</div>
 						</div>
-					    <div class="col-md-6 form-group">
+					    <!-- <div class="col-md-6 form-group">
 							<div class="col-md-3 title">注册日期：</div>
 							<div class="col-md-9">
 								<div class="input-group date form-date">
 									 <input id="registDt" class="form-control" type="text" /><span class="input-group-addon"><span class=" glyphicon glyphicon-calendar" ></span></span>
 								</div>
 							</div>
-						</div>
-						<div style="clear:both;"></div>
-						<div class="col-md-6 form-group">
-							<div class="col-md-3 title">会员类型：</div>
-							<div class="col-md-9">
-								<select id="customerType" class="form-control customerType">
-									<option></option>
-									<option value="0">年卡</option>
-									<option value="1">月卡</option>
-									<option value="2">次卡</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6 form-group">
+						</div> -->
+						<!-- <div class="col-md-6 form-group">
 							<div class="col-md-3 title">密码：</div>
 							<div class="col-md-9">
 								<input id="pwd" class="form-control" type="password">
 							</div>
-						</div>
+						</div> -->
 					</form>
 				</div>
 	  		</div>
@@ -184,12 +200,38 @@
 	  		<div id="collapseTwo" class="panel-collapse collapse in">
 	 			<div class="panel-body">
 	 				<div class="col-md-6 form-group">
-						<div class="col-md-3 title">充值金额：</div>
+						<div class="col-md-3 title">会员类型：</div>
 						<div class="col-md-9">
-							<input id="amount" class="form-control" type="text">
+							<select id="customerType" class="form-control customerType" onchange="getCustomerType()">
+								<option>请选择</option>
+								<option value="0">年卡会员</option>
+								<option value="1">月卡会员</option>
+								<option value="2">次卡会员</option>
+							</select>
 						</div>
 					</div>
-	 				<!-- <div class="col-md-6 form-group">
+	 				<div class="col-md-6 form-group">
+						<div class="col-md-3 title">充值金额：</div>
+						<div class="col-md-9">
+							<div class="col-md-12 input-group">
+								<input id="amount" class="form-control" type="text">
+								<span class="input-group-addon">元</span>
+							</div>
+						</div>
+					</div>
+					<div style="clear:both;" class="beDate"></div>
+	 				<div class="col-md-6 form-group beDate">
+						<div class="col-md-3 title">起始日期：</div>
+						<div class="col-md-9 ">
+							<div id="begDt" class="col-md-12 input-group date form-date">
+								<input id="" class="form-control" type="text">
+								<span class="input-group-addon">
+									<span class=" glyphicon glyphicon-calendar" ></span>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 form-group beDate">
 						<div class="col-md-3 title">截止日期：</div>
 						<div class="col-md-9 ">
 							<div id="endDt" class="col-md-12 input-group date form-date">
@@ -199,8 +241,9 @@
 								</span>
 							</div>
 						</div>
-					</div> -->
-	 				<div class="col-md-6 form-group">
+					</div>
+					<div style="clear:both;" class="times"></div>
+	 				<div class="col-md-6 form-group times">
 						<div class="col-md-3 title">充值次数：</div>
 						<div class="col-md-9">
 							<div class="col-md-12 input-group">
@@ -215,7 +258,7 @@
 		<!-- 基础信息结束 -->
 		
 		<div style="text-align:center;padding-top:10px">
-			<input class="btn btn-primary" onclick="submitBtn();" value="提交" />			
+			<a class="btn btn-primary" onclick="submitBtn();" >提交</a>		
 <!-- 			<a href="./customer.jsp" class="btn btn-default">返回</a>	 -->
 			<a href="./customer.jsp" class="btn btn-default">返回</a>	
 		</div>

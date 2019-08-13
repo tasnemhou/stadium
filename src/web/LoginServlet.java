@@ -2,21 +2,15 @@ package web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
-import common.Alert;
-import entity.Dictionary;
-import entity.LoginStatus;
 import entity.User;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import service.LoginService;
 import service.LoginServiceImpl;
@@ -63,12 +57,11 @@ public class LoginServlet extends HttpServlet {
 		}if("/jsp/cus_login.do".equals(path)) {
 			String phone = req.getParameter("phone");	
 			
-//			String userNm =  service.chkCustomer(phone);
-			String userNm = "1"; System.out.println("userNm is: " + userNm);
+			int count =  service.chkCustomer(phone);
 //			req.setAttribute("phone","12100000000");
-			JSONObject object = JSONObject.fromObject("{'isExist':"+userNm+"}");
+			JSONObject object = JSONObject.fromObject("{'isExist':"+count+"}");
 			PrintWriter pw = res.getWriter();
-			pw.println(object);	
+			pw.println(object);
 			pw.close();
 //			req.getRequestDispatcher("/jsp/main_page.jsp").forward(req, res);
 		}

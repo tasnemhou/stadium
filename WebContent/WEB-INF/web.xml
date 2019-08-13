@@ -26,4 +26,20 @@
   	<servlet-name>re</servlet-name>
   	<url-pattern>*.re</url-pattern>
   </servlet-mapping>
+  <servlet>
+  <servlet-name>info</servlet-name>
+  	<servlet-class>web.UserInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>info</servlet-name>
+  	<url-pattern>*.info</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>deal</servlet-name>
+  	<servlet-class>web.DealInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>deal</servlet-name>
+  	<url-pattern>*.deal</url-pattern>
+  </servlet-mapping>
 </web-app>

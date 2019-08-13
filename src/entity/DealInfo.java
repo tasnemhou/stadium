@@ -13,18 +13,15 @@ public class DealInfo implements Serializable {
 	private String customer;
 
 	/**交易金额*/
-	private String dealAmount;
+	private Double dealAmount;
 
 	/** 交易次数（本次充值生效次数或本次消费生效次数）*/
-	private String dealTimes;
+	private Integer dealTimes;
 
 	/** 余额*/
-	private String balance;
+//	private Integer balance;
 	
-	/** 剩余使用次数*/
-	private String times;
-	
-	/**交易类型 0-充值  1-消费 2-免费（优惠）*/
+	/**交易类型 0-充值  1-消费 */
 	private String kind;
 	
 	/**客户类型 0-年卡会员  1-月卡会员  2-次卡会员  3-散客 */
@@ -36,6 +33,31 @@ public class DealInfo implements Serializable {
 	
 	/** 交易日期*/
 	private String dealDt;
+	
+	/** 1-会员充值  2-会员消费  3-散客消费 */
+	private String isPay;
+	
+	/** 页数 */
+	private Integer pageNumber;
+	
+	/** 每页的记录数 */
+	private Integer pageSize;
+	
+	public Integer getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -53,37 +75,29 @@ public class DealInfo implements Serializable {
 		this.customer = customer;
 	}
 
-	public String getDealAmount() {
+	public Double getDealAmount() {
 		return dealAmount;
 	}
 
-	public void setDealAmount(String dealAmount) {
+	public void setDealAmount(Double dealAmount) {
 		this.dealAmount = dealAmount;
 	}
 
-	public String getDealTimes() {
+	public Integer getDealTimes() {
 		return dealTimes;
 	}
 
-	public void setDealTimes(String dealTimes) {
+	public void setDealTimes(Integer dealTimes) {
 		this.dealTimes = dealTimes;
 	}
 
-	public String getBalance() {
+/*	public Integer getBalance() {
 		return balance;
 	}
 
-	public void setBalance(String balance) {
+	public void setBalance(Integer balance) {
 		this.balance = balance;
-	}
-
-	public String getTimes() {
-		return times;
-	}
-
-	public void setTimes(String times) {
-		this.times = times;
-	}
+	}*/
 
 	public String getKind() {
 		return kind;
@@ -116,5 +130,12 @@ public class DealInfo implements Serializable {
 	public void setDealDt(String dealDt) {
 		this.dealDt = dealDt;
 	}
-	
+
+	public String getIsPay() {
+		return isPay;
+	}
+
+	public void setIsPay(String isPay) {
+		this.isPay = isPay;
+	}
 }

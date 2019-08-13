@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -17,7 +18,7 @@ public class RegistDaoImpl implements RegistDao {
 		Connection connection = null;
 		try {
 			connection = DBUtil.getConnection();
-			String sql = "insert into emp_user_info values(emp_seq.nextval,?,?,?,?,?)";
+			String sql = "insert into sts_user_info values(emp_seq.nextval,?,?,?,?,?)";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, user.getUserName());
 			ps.setString(2,user.getPhone());
@@ -31,45 +32,54 @@ public class RegistDaoImpl implements RegistDao {
 		}finally {
 			DBUtil.close(connection);
 		}	
-		
 	}
 
 	@Override
 	public void regist(Customer customer, DealInfo dealInfo) {
 		Connection con = null;
 		try {
-			String sqlDeal = "insert into emp_deal_info (CUSTOMERID,DEALAMOUNT,DEALTIMES,CUSTOMERTYPE,DEALDT) values(emp_seq.nextval,?,?,?,?)";
-			String sqlCus = "insert into emp_customer_info (ID, NAME, PHONE,PASSWORD,SEX,REGISTDT) values(emp_seq.nextval,?,?,?,?,?)";
+			String sqlCus = "insert into sts_customer_info (ID, NAME, PHONE,PASSWORD,SEX,REGISTDT) values(emp_seq.nextval,?,?,?,?,?)";
 		    
 			con = DBUtil.getConnection();
-			PreparedStatement ps = con.prepareStatement(sqlCus);
+			
+			con.setAutoCommit(false);   // 事物管理，取消自动提交
+			PreparedStatement ps = con.prepareStatement(sqlCus,new String[]{"id"});
 			ps.setString(1, customer.getName());
 			ps.setString(2, customer.getPhone());
 			ps.setString(3, customer.getPwd());
 			ps.setString(4, customer.getSex());
 			ps.setString(5, customer.getRegistDate());
 			
-			ps.execute();
+			ps.executeUpdate();
+			ResultSet resultSet = ps.getGeneratedKeys();
+			String key = "";
+			while(resultSet.next()) {
+				key = resultSet.getString(1);
+			};
+			
+			System.out.println("the key is: "+key);
+			String sqlDeal = "insert into sts_deal_info (CUSTOMERID,DEALAMOUNT,DEALTIMES,CUSTOMERTYPE,DEALDT) values(?,?,?,?,?)";
 			
 			PreparedStatement psDeal = con.prepareStatement(sqlDeal);
-			psDeal.setString(1, dealInfo.getDealAmount());
-			psDeal.setString(2, dealInfo.getDealTimes());
-			psDeal.setString(3, dealInfo.getCustomerType());
-			psDeal.setString(4, customer.getRegistDate());
+			psDeal.setString(1, key);
+			psDeal.setDouble(2, dealInfo.getDealAmount());
+			psDeal.setInt(3, dealInfo.getDealTimes());
+			psDeal.setString(4, dealInfo.getCustomerType());
+			psDeal.setString(5, customer.getRegistDate());
 			
+			psDeal.executeUpdate();
 			
+			con.commit();    //事物管理， 提交
 		} catch (SQLException e) {
+			try {
+				con.rollback();     //事物管理， 如果失败，则回滚
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				e.getMessage();
-				
-			}
-		}
-		
+			DBUtil.close(con);
+		}		
 	}
 	
 }

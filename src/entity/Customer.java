@@ -24,6 +24,23 @@ public class Customer implements Serializable{
 	/** 客户注册日期*/
 	private String registDate;
 
+	/** 年/月 卡用户 起始日期*/
+	private String begDate;
+	
+	/** 年/月 卡用户 截止日期*/
+	private String endDate;
+	
+	/** 剩余次数*/
+	private Integer lastTimes;
+	
+	public Integer getLastTimes() {
+		return lastTimes;
+	}
+
+	public void setLastTimes(Integer lastTimes) {
+		this.lastTimes = lastTimes;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -71,5 +88,19 @@ public class Customer implements Serializable{
 	public void setRegistDate(String registDate) {
 		this.registDate = registDate;
 	}
-	
+	public String getBegDate() {
+		return begDate;
+	}
+
+	public void setBegDate(String begDate) {
+		this.begDate = begDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 }

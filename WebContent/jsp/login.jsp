@@ -63,7 +63,6 @@
 		</div>
 		<div style="text-align:center;padding-top:10px">
 			<a class="btn btn-primary" onclick="subBtn();">提交</a>
-			<a class="btn btn-default" href="./regist.jsp">注册</a>
 			<a class="btn btn-default" href="./menu.jsp">菜单</a>
 			<a class="btn btn-default" href="../test/main_page_test.jsp">测试页 </a>
 		</div>

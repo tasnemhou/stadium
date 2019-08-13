@@ -11,6 +11,6 @@ public interface LoginDao {
 	public String checkUser(String pwd);
 	
 	//客户登陆验证
-	public String chkCustomer(String phone);
+	public int chkCustomer(String phone);
 	
 }

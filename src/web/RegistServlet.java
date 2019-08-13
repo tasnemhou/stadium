@@ -17,9 +17,6 @@ import service.RegistService;
 import service.RegistServiceImpl;
 
 public class RegistServlet extends HttpServlet{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2262171915996965667L;
 	Logger log = Logger.getLogger(RegistServlet.class);
 	@Override
@@ -53,8 +50,8 @@ public class RegistServlet extends HttpServlet{
 			customer.setSex(req.getParameter("sex"));
 			
 			DealInfo info = new DealInfo();
-			info.setDealAmount(req.getParameter("amount"));
-			info.setDealTimes(req.getParameter("dealTimes"));
+			info.setDealAmount(Double.valueOf(req.getParameter("amount")));
+			info.setDealTimes(Integer.valueOf(req.getParameter("dealTimes")));
 			info.setCustomerType(req.getParameter("customerType"));
 			service.regist(customer, info);
 		}

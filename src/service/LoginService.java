@@ -1,8 +1,5 @@
 package service;
 
-import java.util.List;
-
-import entity.Dictionary;
 import entity.User;
 
 public interface LoginService {
@@ -11,5 +8,5 @@ public interface LoginService {
 	public String checkUser(User user);
 	
 	//客户登陆验证
-	public String chkCustomer(String phone);
+	public int chkCustomer(String phone);
 }

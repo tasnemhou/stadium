@@ -23,9 +23,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String chkCustomer(String phone) {
-		String userNm = dao.chkCustomer(phone);
-		return userNm;
+	public int chkCustomer(String phone) {
+		int count = dao.chkCustomer(phone);
+		return count;
 	}
 	
 }

@@ -25,22 +25,28 @@
  		function submit_btn() {
  			var phone = $("#phone").val();
  			var pwd = $("#pwd").val();
- 			$.ajax({
- 				url:"cus_login.do",
- 				type:"post",
- 				data:{"phone":phone,"pwd":pwd},
- 				dataType:"json",
- 				success:function(data){
-					if(data.isExist=="0") {
-	 					window.location.href="../jsp/main_page.jsp";	
-					}else if(data.isExist=="1") {
-						alert("该客户不存在！");
-					}
- 				},
- 				error:function(){
- 					window.location.href="../jsp/error.jsp";
- 				}
- 			})
+ 			if(phone=="" && pwd=="") {
+ 				//如果电话和密码都没有值，说明是散客
+ 				window.location.href="../jsp/main_page.jsp?phone=9";
+ 			}else {
+ 				$.ajax({
+ 	 				url:"cus_login.do",
+ 	 				type:"post",
+ 	 				data:{"phone":phone,"pwd":pwd},
+ 	 				dataType:"json",
+ 	 				success:function(data){
+// 	  					alert(data.isExist);
+ 						if(data.isExist>"0") {
+ 		 					window.location.href="../jsp/main_page.jsp?phone="+phone;	
+ 						}else if(data.isExist=="0") {
+ 							alert("该客户不存在！");
+ 						}
+ 	 				},
+ 	 				error:function(){
+ 	 					window.location.href="../jsp/error.jsp";
+ 	 				}
+ 	 			})
+ 			}
  		}
  	</script>
 </head>
@@ -60,6 +66,7 @@
 <!-- 			<input type="submit" class="btn btn-primary"  value="提交"> -->
 			<input type="button" class="btn btn-primary" onclick="submit_btn()" value="提交">
 <!-- 			<input type="button" class="btn btn-default" value="返回"> -->
+			<a class="btn btn-default" href="./regist.jsp">员工注册</a>
 			<a href="./regist_customer.jsp" class="btn btn-default">客户注册</a>
 		</div>
 	</form>
